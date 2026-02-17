@@ -12,8 +12,18 @@ fn input() -> String {
 
 
 fn main() {
-    println!("Hello, world!");
-    let n = input();
-    println!("{}", n);
+    loop {
+        println!("What would you like to do?");
+        println!("[1] Battle, [2] Teambuild, [3] Quit");
+        let n = input();
+        match n.as_str().trim() {
+            "1" => panic!("Not implemented"),
+            "2" => panic!("Not implemented"),
+            "3" => break,
+            _ => {
+                println!("Please enter a number as your option");
+                continue;}
+        }
+    }
 }
 
