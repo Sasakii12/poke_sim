@@ -15,7 +15,7 @@ fn input() -> String {
 fn main() {
     loop {
         println!("What would you like to do?");
-        println!("[1] Battle, [2] Teambuild, [3] Quit");
+        println!("[1] Battle,\n[2] Teambuild,\n[3] Quit");
         let n = input();
         match n.as_str().trim() {
             "1" => panic!("Not implemented"),

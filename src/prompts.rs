@@ -14,6 +14,7 @@ pub fn team_file_create() {
             panic!("Error opening file: {:?}", error)
         }
     });
+    println!("teams.json found!, loading teams...")
 }
 
 pub fn team_build_init() {
