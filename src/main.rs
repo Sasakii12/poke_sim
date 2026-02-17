@@ -1,6 +1,7 @@
 use std::io;
 
 pub mod prompts;
+mod pokemon;
 
 fn input() -> String {
     let mut buf = String::new();
