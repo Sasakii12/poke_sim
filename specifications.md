@@ -3,6 +3,7 @@
 - Store full teams of 6 pokemon with full IV's, EV's, and movesets
 - Fully implement battle mechanics such a weather, status, and entry hazards
 - Do battle between an AI or another player in the CLI (no p2p battling)
+- Fully emplement gen 9 battle mechanics (dynamic speed etc)
 - Cache data from the Pokemon API
 
 # Optional
