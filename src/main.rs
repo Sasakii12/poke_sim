@@ -18,7 +18,7 @@ fn main() {
         let n = input();
         match n.as_str().trim() {
             "1" => panic!("Not implemented"),
-            "2" => panic!("Not implemented"),
+            "2" => prompts::team_file_create(),
             "3" => break,
             _ => {
                 println!("Please enter a number as your option");
