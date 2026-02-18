@@ -13,6 +13,12 @@ fn input() -> String {
 
 
 fn main() {
+    // Test object
+    let meowscarada = pokemon::pokemon::Pokemon::new(String::from("Meowscarada"),
+    ("Grass".to_string(), "Dark".to_string()), "Protean".to_string(), 76, 110, 70,
+    81, 70, 123, "Bold".to_string(),[].to_vec(), [].to_vec(), "Leftovers".to_string());
+
+
     loop {
         println!("What would you like to do?");
         println!("[1] Battle,\n[2] Teambuild,\n[3] Quit");
