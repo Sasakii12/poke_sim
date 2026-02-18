@@ -14,10 +14,10 @@ fn input() -> String {
 
 fn main() {
     // Test object
-    let meowscarada = pokemon::pokemon::Pokemon::new(String::from("Meowscarada"),
+    let mut meowscarada = pokemon::pokemon::Pokemon::new(String::from("Meowscarada"),
     ("Grass".to_string(), "Dark".to_string()), "Protean".to_string(), 76, 110, 70,
     81, 70, 123, "Bold".to_string(),[].to_vec(), [].to_vec(), "Leftovers".to_string());
-
+    meowscarada.IV();
 
     loop {
         println!("What would you like to do?");
