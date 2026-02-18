@@ -1,3 +1,5 @@
+use std::string::ParseError;
+
 use crate::input;
 
 
@@ -50,7 +52,6 @@ impl Pokemon {
                     println!("Please enter numbers for your IV's, setting default to 31");
                     return 31
                 });
-                println!("{}", m);
                 m
             });
             self.IV = iv_int.collect();
@@ -59,8 +60,23 @@ impl Pokemon {
         
     }
 
-    fn EV(&mut self) {
-        println!("Please enter your EV's in order of HP to speed seperated by comma\n IE, 252, 4, 252, 0, 0, 0");
-        println!("Reminder that your EV's max at 252 for a single stat and you can only invest 508 in total")
+    pub fn EV(&mut self) {
+        loop {
+            println!("Please enter your EV's in order of HP to speed seperated by comma\n IE, 252, 4, 252, 0, 0, 0");
+            println!("Reminder that your EV's max at 252 for a single stat and you can only invest 508 in total");
+            let EV = input().split(",").map(|x| x.trim().parse::<u16>()).collect::<Result<Vec<u16>, _>>();
+            println!("{:?}", EV);
+            let EV = match EV {
+                Ok(f) => f,
+                Err(e) => {
+                    println!("Error");
+                    println!("{:?}", e);
+                    continue;
+                }
+            };
+            self.EV = EV;
+            break;
+        }
+        
     }
 }
