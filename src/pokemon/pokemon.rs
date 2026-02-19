@@ -47,7 +47,7 @@ impl Pokemon {
             let iv = input().split(",").map(|x| x.trim().parse::<u16>()).collect::<Result<Vec<u16>, _>>();
             let iv = match iv {
                 Ok(f) => f,
-                Err(e) => continue,
+                Err(_) => continue,
             };
 
             self.IV = iv;
@@ -61,7 +61,7 @@ impl Pokemon {
             let EV = input().split(",").map(|x| x.trim().parse::<u16>()).collect::<Result<Vec<u16>, _>>();
             let EV = match EV {
                 Ok(f) => f,
-                Err(e) => {
+                Err(_) => {
                     continue;
                 }
             };
