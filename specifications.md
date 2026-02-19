@@ -9,3 +9,7 @@
 # Optional
 - P2P battling (advanced even for me)
 - Accept teams from a pokepaste
+
+# TODO
+- Add enums for types
+- Add Eval methods to Pokemon struct to evaluate IV and EV's into actual stat numbers
