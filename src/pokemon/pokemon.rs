@@ -44,33 +44,24 @@ impl Pokemon {
     pub fn IV(&mut self) {
         loop {
             println!("Please enter your IV's in order of HP to speed seperated by comma\n IE, 31, 25, 20, 31, 25, 31");
-            let iv = input();
+            let iv = input().split(",").map(|x| x.trim().parse::<u16>()).collect::<Result<Vec<u16>, _>>();
+            let iv = match iv {
+                Ok(f) => f,
+                Err(e) => continue,
+            };
 
-            let iv_int = iv.split(",").map(|x| {
-                
-                let m = x.trim().parse::<u16>().unwrap_or_else(|error| {
-                    println!("Please enter numbers for your IV's, setting default to 31");
-                    return 31
-                });
-                m
-            });
-            self.IV = iv_int.collect();
+            self.IV = iv;
             break;
         }
-        
     }
-
     pub fn EV(&mut self) {
         loop {
             println!("Please enter your EV's in order of HP to speed seperated by comma\n IE, 252, 4, 252, 0, 0, 0");
             println!("Reminder that your EV's max at 252 for a single stat and you can only invest 508 in total");
             let EV = input().split(",").map(|x| x.trim().parse::<u16>()).collect::<Result<Vec<u16>, _>>();
-            println!("{:?}", EV);
             let EV = match EV {
                 Ok(f) => f,
                 Err(e) => {
-                    println!("Error");
-                    println!("{:?}", e);
                     continue;
                 }
             };
