@@ -1,12 +1,11 @@
 use std::string::ParseError;
-
-use crate::input;
+use crate::{input, pokemon::types::{Types, Nature}};
 
 
 // Used for constructing the full stats of a pokemon
 pub struct PokemonBaseStats {
     name: String,
-    types: (String, String),
+    types: (Types, Types),
     ability: String,
     hp: u16,
     attack: u16,
@@ -19,7 +18,8 @@ pub struct PokemonBaseStats {
 // The resulting pokemon when fully IV'd, EV'd, and item'd
 pub struct Pokemon {
     name: String,
-    types: (String, String),
+    types: (Types, Types),
+    level: u16,
     ability: String,
     hp: u16,
     attack: u16,
@@ -27,18 +27,22 @@ pub struct Pokemon {
     spatk: u16,
     spdef: u16,
     speed: u16,
-    nature: String,
+    nature: Nature,
     IV: Vec<u16>,
     EV: Vec<u16>,
     item: String,
 }
 
+impl PokemonBaseStats {
+    pub fn new() {}
+}
+
 impl Pokemon {
-    pub fn new(name: String, types: (String, String), ability: String,
-    hp: u16, attack: u16, defense: u16, spatk: u16, spdef: u16, speed: u16, nature: String,
+    pub fn new(name: String, types: (Types, Types), level: u16, ability: String,
+    hp: u16, attack: u16, defense: u16, spatk: u16, spdef: u16, speed: u16, nature: Nature,
     IV: Vec<u16>, EV: Vec<u16>, item: String) -> Pokemon 
     {
-        Pokemon { name, types, ability, hp, attack, defense, spatk, spdef, speed, nature, IV, EV, item }
+        Pokemon { name, types, level, ability, hp, attack, defense, spatk, spdef, speed, nature, IV, EV, item }
     }
 
     pub fn IV(&mut self) {
@@ -69,5 +73,17 @@ impl Pokemon {
             break;
         }
         
+    }
+
+    fn hp_eq(hp: u16, IV: u16, EV: u16, level: u16) -> u16 {
+        (((2. * hp as f32 + IV as f32 + (EV as f32 / 4.)) * level as f32) / 100.).floor() as u16 + level + 10
+    }
+
+    fn stat_eq(stat: u16, IV: u16, EV: u16, level: u16, nature: String) {
+
+    }
+
+    pub fn eval(&mut self) {
+        let level = self.level;
     }
 }

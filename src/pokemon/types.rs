@@ -1,4 +1,4 @@
-enum Types {
+ pub enum Types {
     Normal,
     Fire,
     Water,
@@ -19,7 +19,7 @@ enum Types {
     Fairy
 }
 
-enum Natures {
+pub enum Nature {
     // Neutral natures
     Hardy,
     Docile,
