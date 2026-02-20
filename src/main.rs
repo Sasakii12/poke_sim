@@ -1,6 +1,6 @@
 use std::io;
 
-use crate::pokemon::types::{Nature, Types};
+use crate::pokemon::{pokemon::PokemonBaseStats, types::{Nature, Types}};
 
 pub mod prompts;
 mod pokemon;
@@ -16,9 +16,10 @@ fn input() -> String {
 
 fn main() {
     // Test object
-    let mut meowscarada = pokemon::pokemon::Pokemon::new(String::from("Meowscarada"),
-    (Types::Grass, Types::Dark), 50,"Protean".to_string(), 76, 110, 70,
-    81, 70, 123, Nature::Bold,[].to_vec(), [].to_vec(), "Leftovers".to_string());
+    let meowscarada_base = PokemonBaseStats::new(String::from("Meowscarada"),
+    (Types::Grass, Types::Dark),"Protean".to_string(), 76, 110, 70,
+    81, 70, 123);
+    let mut meowscarada = pokemon::pokemon::Pokemon::new(meowscarada_base, 100, Nature::Bold,[].to_vec(), [].to_vec(), "Leftovers".to_string());
     meowscarada;
 
     loop {
