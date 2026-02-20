@@ -79,11 +79,26 @@ impl Pokemon {
         (((2. * hp as f32 + IV as f32 + (EV as f32 / 4.)) * level as f32) / 100.).floor() as u16 + level + 10
     }
 
-    fn stat_eq(stat: u16, IV: u16, EV: u16, level: u16, nature: String) {
-
+    fn stat_eq(stat_name: String, stat: u16, IV: u16, EV: u16, level: u16, nature: Nature) -> u16 {
+        let nature_stat_change = nature.eval_nature();
+        if nature_stat_change.0 == stat_name {
+            ((((2. * stat as f32 + IV as f32 + (EV as f32 / 4.)) * level as f32) / 100.).floor() + 5. * 1.1).floor() as u16
+        } else if nature_stat_change.1 == stat_name {
+            ((((2. * stat as f32 + IV as f32 + (EV as f32 / 4.)) * level as f32) / 100.).floor() + 5. * 0.9).floor() as u16
+        } else {
+            ((((2. * stat as f32 + IV as f32 + (EV as f32 / 4.)) * level as f32) / 100.).floor() + 5.).floor() as u16
+        }
     }
 
     pub fn eval(&mut self) {
-        let level = self.level;
+        // By default level should be 100
+        self.level = 100;
+
+        self.hp = Pokemon::hp_eq(self.hp, self.IV[0], self.EV[0], self.level);
+        self.attack = Pokemon::stat_eq(String::from("Attack"), self.attack, self.IV[1], self.EV[1], self.level, self.nature);
+        self.defense = Pokemon::stat_eq(String::from("Defense"), self.defense, self.IV[2], self.EV[2], self.level, self.nature);
+        self.spatk = Pokemon::stat_eq(String::from("Spatk"), self.spatk, self.IV[3], self.EV[3], self.level, self.nature);
+        self.spdef = Pokemon::stat_eq(String::from("Spdef"), self.spdef, self.IV[4], self.EV[4], self.level, self.nature);
+        self.speed = Pokemon::stat_eq(String::from("Speed"), self.speed, self.IV[5], self.EV[5], self.level, self.nature);
     }
 }
