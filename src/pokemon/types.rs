@@ -21,6 +21,7 @@
     Fairy
 }
 
+#[derive(Copy, Clone)]
 pub enum Nature {
     // Neutral natures
     Hardy,
