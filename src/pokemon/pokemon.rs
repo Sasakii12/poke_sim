@@ -108,14 +108,30 @@ impl Pokemon {
     }
 
     pub fn eval(&mut self) {
+        if self.IV.len() == 0 {
+            self.IV();
+        }
+        if self.EV.len() == 0 {
+            self.EV()
+        }
         // By default level should be 100
         self.level = 100;
-
+        println!("{:?}", self.IV);
+        println!("{:?}", self.EV);
         self.hp = Pokemon::hp_eq(self.hp, self.IV[0], self.EV[0], self.level);
         self.attack = Pokemon::stat_eq(String::from("Attack"), self.attack, self.IV[1], self.EV[1], self.level, self.nature);
         self.defense = Pokemon::stat_eq(String::from("Defense"), self.defense, self.IV[2], self.EV[2], self.level, self.nature);
         self.spatk = Pokemon::stat_eq(String::from("Spatk"), self.spatk, self.IV[3], self.EV[3], self.level, self.nature);
         self.spdef = Pokemon::stat_eq(String::from("Spdef"), self.spdef, self.IV[4], self.EV[4], self.level, self.nature);
         self.speed = Pokemon::stat_eq(String::from("Speed"), self.speed, self.IV[5], self.EV[5], self.level, self.nature);
+    }
+
+    pub fn display(&mut self) {
+        println!("{}", self.hp);
+        println!("{}", self.attack);
+        println!("{}", self.defense);
+        println!("{}", self.spatk);
+        println!("{}", self.spdef);
+        println!("{}", self.speed);
     }
 }

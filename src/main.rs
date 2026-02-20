@@ -20,7 +20,9 @@ fn main() {
     (Types::Grass, Types::Dark),"Protean".to_string(), 76, 110, 70,
     81, 70, 123);
     let mut meowscarada = pokemon::pokemon::Pokemon::new(meowscarada_base, 100, Nature::Bold,[].to_vec(), [].to_vec(), "Leftovers".to_string());
-    meowscarada;
+    meowscarada.display();
+    meowscarada.eval();
+    meowscarada.display();
 
     loop {
         println!("What would you like to do?");
