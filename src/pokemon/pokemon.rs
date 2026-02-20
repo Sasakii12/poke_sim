@@ -34,15 +34,32 @@ pub struct Pokemon {
 }
 
 impl PokemonBaseStats {
-    pub fn new() {}
+    pub fn new(name: String, types: (Types,Types), ability: String, hp: u16, attack: u16, defense: u16, spatk: u16, spdef: u16,
+    speed: u16) -> PokemonBaseStats {
+        PokemonBaseStats {name, types, ability, hp, attack, defense, spatk, spdef, speed}
+    }
 }
 
 impl Pokemon {
-    pub fn new(name: String, types: (Types, Types), level: u16, ability: String,
-    hp: u16, attack: u16, defense: u16, spatk: u16, spdef: u16, speed: u16, nature: Nature,
+    pub fn new(base_stats: PokemonBaseStats, level: u16, nature: Nature,
     IV: Vec<u16>, EV: Vec<u16>, item: String) -> Pokemon 
     {
-        Pokemon { name, types, level, ability, hp, attack, defense, spatk, spdef, speed, nature, IV, EV, item }
+        Pokemon {
+            name: base_stats.name,
+            types: base_stats.types,
+            ability: base_stats.ability,
+            hp: base_stats.hp,
+            attack: base_stats.attack,
+            defense: base_stats.defense,
+            spatk: base_stats.spatk,
+            spdef: base_stats.spdef,
+            speed: base_stats.speed,
+            level,
+            nature, 
+            IV,
+            EV,
+            item,
+         }
     }
 
     pub fn IV(&mut self) {
