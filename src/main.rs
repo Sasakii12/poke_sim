@@ -19,7 +19,7 @@ fn main() {
     let meowscarada_base = PokemonBaseStats::new(String::from("Meowscarada"),
     (Types::Grass, Types::Dark),"Protean".to_string(), 76, 110, 70,
     81, 70, 123);
-    let mut meowscarada = pokemon::pokemon::Pokemon::new(meowscarada_base, 100, Nature::Bold,[].to_vec(), [].to_vec(), "Leftovers".to_string());
+    let mut meowscarada = pokemon::pokemon::Pokemon::new(meowscarada_base, 100, Nature::Adamant,[].to_vec(), [].to_vec(), "Leftovers".to_string());
     meowscarada.display();
     meowscarada.eval();
     meowscarada.display();
