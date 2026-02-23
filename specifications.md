@@ -11,5 +11,8 @@
 - Accept teams from a pokepaste
 
 # TODO
-- Add enums for types
-- Add Eval methods to Pokemon struct to evaluate IV and EV's into actual stat numbers
+- Add fetching for pokemon data
+- Limit the EV's someone can allocate to one pokemon
+- Create an interactive teambuilder that lets the user enter pokemon, stats, and items
+- Store teams in a json file
+- Add support for battling between a player/AI
