@@ -8,8 +8,8 @@ use crate::pokemon::pokemon::PokemonBaseStats;
 pub struct PokemonJson {
     abilities: String,
     moves: String,
-    stats: String,
-    types: String,
+    stats: Vec<(String, u16)>,
+    types: Vec<String>,
 }
 
 
@@ -20,8 +20,8 @@ pub async fn fetch_pokemon(pokemon: &str, url: &str) -> Result<String, Error> {
     Ok(req)
 }
 
-pub async fn parse_pokemon(poke_json: String) -> Result<PokemonJson, serde_json::Error> {
-    let poke: Value = serde_json::from_str(&poke_json)?;
+pub async fn parse_pokemon(poke_string_json: String) -> Result<PokemonJson, serde_json::Error> {
+    let poke: Value = serde_json::from_str(&poke_string_json)?;
 
     let abilities = poke["abilities"].as_array().map(|arr| {
         arr.iter().filter_map(|item| item["ability"]["name"].as_str()).collect::<Vec<_>>().join(", ")
@@ -31,17 +31,30 @@ pub async fn parse_pokemon(poke_json: String) -> Result<PokemonJson, serde_json:
         arr.iter().filter_map(|mv| mv["move"]["name"].as_str()).collect::<Vec<_>>().join(", ")
     }).unwrap_or_default();
 
-    let moves = poke["moves"].as_array().map(|arr| {
-        arr.iter().filter_map(|mv| mv["move"]["name"].as_str()).collect::<Vec<_>>().join(", ")
-    }).unwrap_or_default();
-
-    let stats = poke["stats"].as_array().map(|arr| {
+    let s = poke["stats"].as_array().map(|arr| {
         arr.iter().filter_map(|st| Some((st["stat"]["name"].as_str(),st["base_stat"].to_string().parse::<u16>()))).collect::<Vec<_>>()
     }).unwrap_or_default();
-    let s = stats.iter().map(|x| {
+    let stats = s.iter().map(|x| {
         (x.0.unwrap().to_string(), x.1.as_ref().unwrap().to_owned())
     }).collect::<Vec<(String,u16)>>();
-    println!("{:?}", s);
-    todo!("")
+    
+    let types = poke["types"].as_array().map(|arr| {
+        arr.iter().filter_map(|typ| Some(typ["type"]["name"].to_owned().to_string())).collect::<Vec<_>>()
+    }).unwrap_or_default();
 
+    Ok(PokemonJson { abilities, moves, stats, types })
+
+}
+
+pub fn pokeapi_to_basestats(name: String,poke_json: PokemonJson) -> super::pokemon::PokemonBaseStats {
+    PokemonBaseStats {
+        name, 
+        types: todo!(),
+        ability: todo!(), 
+        hp: todo!(), 
+        attack: todo!(), 
+        defense: todo!(), 
+        spatk: todo!(), 
+        spdef: todo!(), 
+        speed: todo!() }
 }

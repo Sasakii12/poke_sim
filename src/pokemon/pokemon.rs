@@ -4,15 +4,15 @@ use crate::{input, pokemon::types::{Types, Nature}};
 
 // Used for constructing the full stats of a pokemon
 pub struct PokemonBaseStats {
-    name: String,
-    types: (Types, Types),
-    ability: String,
-    hp: u16,
-    attack: u16,
-    defense: u16,
-    spatk: u16,
-    spdef: u16,
-    speed: u16,
+    pub name: String,
+    pub types: (Types, Types),
+    pub ability: String,
+    pub hp: u16,
+    pub attack: u16,
+    pub defense: u16,
+    pub spatk: u16,
+    pub spdef: u16,
+    pub speed: u16,
 }
 
 // The resulting pokemon when fully IV'd, EV'd, and item'd
