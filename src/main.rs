@@ -1,8 +1,7 @@
 use std::io;
 
-use crate::pokemon::{fetch, pokemon::PokemonBaseStats, types::{Nature, Types}};
+use crate::pokemon::{fetch::{self, parse_pokemon}, pokemon::PokemonBaseStats, types::{Nature, Types}};
 
-pub mod prompts;
 mod pokemon;
 
 fn input() -> String {
@@ -24,8 +23,9 @@ async fn main() {
     // meowscarada.display();
     // meowscarada.eval();
     // meowscarada.display();
-
-    println!("{}", fetch::fetch_pokemon("Pikachu", "https://pokeapi.co/api/v2/pokemon/").await.unwrap());
+    let n = fetch::fetch_pokemon("Pikachu", "https://pokeapi.co/api/v2/pokemon/").await.unwrap();
+    // println!("{}", n);
+    println!("{:?}", parse_pokemon(n).await.unwrap());
 
     loop {
         println!("What would you like to do?");
